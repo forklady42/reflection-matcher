@@ -35,6 +35,8 @@ def get_JSON(name):
 	match_data['name'] = name
 	match_data['children'] = []
 
+	top_names = {}
+
 	doc = collection.find_one({'name':name})
 	print "name: " + name
 	my_keywords = doc['keywords'].keys()
@@ -50,6 +52,10 @@ def get_JSON(name):
 		for match_doc in match_docs[:10]:
 			if match_doc['name'] != name:
 				match_names.append(match_doc['name'])
+				try: 
+					top_names[match_doc['name']] += 1
+				except KeyError:
+					top_names[match_doc['name']] = 1
 
 		for person in match_names:
 			# INCLUDE TO CONCEAL LAST NAMES
@@ -66,8 +72,10 @@ def get_JSON(name):
 
 		match_data['children'].append(word_data)
 
+	match_data['top'] = max(top_names, key=top_names.get)
+
 	return json.dumps(match_data)
-	
+
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 5000))
 	app.run(host='0.0.0.0', port=port)

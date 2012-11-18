@@ -12,6 +12,14 @@ h1 {
 	letter-spacing: -1px;
 }
 
+h2 {
+	font-family: 'Arbutus Slab', serif;
+	font-size: 24px;
+	text-align: center;
+	color: #574D37;
+	letter-spacing: -1px;
+}
+
 form {
 	text-align: center;
 }

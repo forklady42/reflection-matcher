@@ -26,6 +26,9 @@ var generate_tree = function(){
 
 	d3.json('/' + name, function(json) {
 	  var nodes = tree.nodes(json);
+      
+      var top_match = (nodes[0].top)
+      $("h2").html("Top Match: " + top_match)
 	
 	  var link = vis.selectAll("path.link")
 	      .data(tree.links(nodes))
@@ -47,7 +50,7 @@ var generate_tree = function(){
 	      .attr("class", "text")
 	      .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
 	      .attr("transform", function(d) { return d.x < 180 ? "translate(8)" : "rotate(180)translate(-8)"; })
-	      .text(function(d) { return d.name; });
+          .text(function(d) { return d.name; });
 	});
 };
 
