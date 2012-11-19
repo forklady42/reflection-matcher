@@ -14,7 +14,7 @@ def start():
 
 @app.route('/favicon.ico')
 def get_icon():
-	return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico')
+	return send_from_directory(os.path.join(app.root_path, 'static'), 'pw.ico')
 
 @app.route('/<name>', methods=["GET"])
 	#create match_data to return as json object for display
